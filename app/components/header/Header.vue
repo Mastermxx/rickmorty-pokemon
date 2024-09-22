@@ -12,9 +12,6 @@
           <li>
             <headerLink to="/rickandmorty" label="Rick & Morty" />
           </li>
-          <!-- <li>
-            <headerLink to="/assignment" label="Read the assignment instructions" />
-          </li> -->
         </ul>
       </nav>
       <div class="ml-auto">
