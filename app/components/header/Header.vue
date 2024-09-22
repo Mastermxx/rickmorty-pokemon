@@ -4,11 +4,17 @@
       <nav>
         <ul class="flex gap-2">
           <li>
-            <ApplicationHeaderLink to="/" label="Home" />
+            <headerLink to="/" label="Home" />
           </li>
           <li>
-            <ApplicationHeaderLink to="/assignment" label="Read the assignment instructions" />
+            <headerLink to="/pokemon" label="Pokemon" />
           </li>
+          <li>
+            <headerLink to="/rickandmorty" label="Rick & Morty" />
+          </li>
+          <!-- <li>
+            <headerLink to="/assignment" label="Read the assignment instructions" />
+          </li> -->
         </ul>
       </nav>
       <div class="ml-auto">
