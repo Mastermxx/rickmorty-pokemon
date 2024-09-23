@@ -1,2 +1,2 @@
-# Rick &amp; Morty and Pokémon Overview Application
-Assignment: Rick &amp; Morty and Pokémon Overview Application
+# Rick & Morty and Pokémon Overview Application
+Assignment: Rick & Morty and Pokémon Overview Application

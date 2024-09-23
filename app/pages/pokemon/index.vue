@@ -5,17 +5,19 @@ import { onMounted } from 'vue';
 // Import store and composable
 import { usePokemonStore } from '../app/stores/usePokemonStore';
 import { useFetchData } from '../app/composables/useFetchData';
+import { useViewModeStore } from '../app/stores/useViewModeStore'; 
 
 // Import components
 import Card from '../app/components/Card.vue';
 
 const pokemonStore = usePokemonStore();
+const viewModeStore = useViewModeStore();
 const router = useRouter();
 
 const { data, status, fetchData } = useFetchData(pokemonStore.fetchPokemonList);
 
 onMounted(() => {
-  fetchData(); 
+  fetchData(pokemonStore.currentPage);
 });
 
 // Pagination functions
@@ -44,7 +46,11 @@ const getPokemonBackgroundUrl = (pokemonName: string) => {
 
     <div v-if="status === 'pending'">Loading Pokémon...</div>
 
-    <div v-if="status === 'success'" class="card-grid">
+    <button @click="viewModeStore.toggleMode">
+      Toggle to {{ viewModeStore.mode === 'grid' ? 'List' : 'Grid' }} View
+    </button>
+
+    <div :class="viewModeStore.mode === 'grid' ? 'card-grid' : 'card-list'" v-if="status === 'success'">
       <Card
         v-for="pokemon in pokemonStore.pokemonList"
         :key="pokemon.name"
@@ -79,6 +85,14 @@ const getPokemonBackgroundUrl = (pokemonName: string) => {
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
+}
+.card-list {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 .pagination {
   display: flex;
