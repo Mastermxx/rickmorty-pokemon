@@ -1,19 +1,24 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
+import { onMounted } from 'vue';
+import { useRickAndMortyStore } from '@/stores/useRickAndMortyStore';
 
-  import { useRoute } from 'vue-router';
+const route = useRoute();
+const rickAndMortyStore = useRickAndMortyStore();
 
-  const route = useRoute();
-  const { data, status, error } = useRickAndMortyData(`character/${route.params.id}`);
-
+// Fetch character details when the component is mounted
+onMounted(() => {
+  rickAndMortyStore.fetchCharacterDetail(route.params.id); // Fetch character based on route param ID
+});
 </script>
 
 <template>
-
-  <!-- When waiting on the data show loading -->
-  <div v-if="status === 'pending'">Loading Rick & Morty Characters...</div>
-
-  <div v-if="data">
-    <h1>{{ data.name }}</h1>
+  <div v-if="!rickAndMortyStore.characterDetail">Loading character details...</div>
+  <div v-else>
+    <h1>{{ rickAndMortyStore.characterDetail.name }}</h1>
+    <p><strong>Status:</strong> {{ rickAndMortyStore.characterDetail.status }}</p>
+    <p><strong>Species:</strong> {{ rickAndMortyStore.characterDetail.species }}</p>
+    <p><strong>Origin:</strong> {{ rickAndMortyStore.characterDetail.origin.name }}</p>
+    <img :src="rickAndMortyStore.characterDetail.image" :alt="rickAndMortyStore.characterDetail.name" />
   </div>
-  
 </template>

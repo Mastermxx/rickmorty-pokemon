@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 const props = defineProps<{
   title: string
 }>()
@@ -15,4 +15,4 @@ const props = defineProps<{
       <slot />
     </main>
   </section>
-</template>
+</template> -->
