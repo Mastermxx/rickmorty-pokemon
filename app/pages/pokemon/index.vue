@@ -5,7 +5,7 @@ import { onMounted } from 'vue';
 // Import store and composable
 import { usePokemonStore } from '../app/stores/usePokemonStore';
 import { useFetchData } from '../app/composables/useFetchData';
-import { useViewModeStore } from '../app/stores/useViewModeStore'; 
+import { useViewModeStore } from '../app/stores/useViewModeStore';
 
 // Import components
 import Card from '../app/components/Card.vue';
@@ -41,75 +41,38 @@ const getPokemonBackgroundUrl = (pokemonName: string) => {
 </script>
 
 <template>
-  <div class="data-container">
-    <h1>Pokémon</h1>
+  <div class="relative">
+    <div class="relative rounded-3xl flex flex-col items-center justify-between bg-white max-w-6xl mx-auto shadow-lg min-h-[600px] w-full p-10">
+      <h1 class="text-4xl font-bold mb-8 text-gray-800">Pokémon</h1>
 
-    <div v-if="status === 'pending'">Loading Pokémon...</div>
+      <!-- Loading State -->
+      <div v-if="status === 'pending'" class="text-center text-gray-700">Loading characters...</div>
 
-    <button @click="viewModeStore.toggleMode">
-      Toggle to {{ viewModeStore.mode === 'grid' ? 'List' : 'Grid' }} View
-    </button>
+      <!-- Toggle Button -->
+      <button @click="viewModeStore.toggleMode" class="mb-4 bg-gray-800 text-white px-4 py-2 rounded-lg" data-cy="view-toggle">
+        Toggle to {{ viewModeStore.mode === 'grid' ? 'List' : 'Grid' }} View
+      </button>
+      <!-- Pokémon Cards and Pagination Section -->
+      <div class="w-full p-10">
+        <div
+          :class="viewModeStore.mode === 'grid' ? 'grid grid-cols-2 lg:grid-cols-3 gap-6' : 'flex flex-col gap-4'"
+          v-if="status === 'success'">
+          <Card v-for="pokemon in pokemonStore.pokemonList" :key="pokemon.name" :title="pokemon.name"
+            :backgroundImage="getPokemonBackgroundUrl(pokemon.name)" :onClick="() => goToDetail(pokemon.name)" />
+        </div>
 
-    <div :class="viewModeStore.mode === 'grid' ? 'card-grid' : 'card-list'" v-if="status === 'success'">
-      <Card
-        v-for="pokemon in pokemonStore.pokemonList"
-        :key="pokemon.name"
-        :title="pokemon.name"
-        :backgroundImage="getPokemonBackgroundUrl(pokemon.name)"
-        :onClick="() => goToDetail(pokemon.name)"
-      />
-    </div>
+        <div v-if="status === 'error'" class="text-center text-red-500">Error loading Pokémon</div>
 
-    <div v-if="status === 'error'">Error loading Pokémon</div>
-
-    <div class="pagination">
-      <button @click="prevPage" :disabled="pokemonStore.currentPage === 1">Previous</button>
-      <button @click="nextPage">Next</button>
+        <div class="flex justify-center gap-4 mt-8">
+          <button @click="prevPage" :disabled="pokemonStore.currentPage === 1"
+            class="px-4 py-2 bg-gray-800 text-white rounded-lg disabled:bg-gray-400">
+            Previous
+          </button>
+          <button @click="nextPage" class="px-4 py-2 bg-gray-800 text-white rounded-lg">
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
-
-<style>
-.data-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  width: 100%;
-  padding: 40px;
-}
-.card-grid {
-  max-width: 900px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-}
-.card-list {
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-button {
-  padding: 10px 20px;
-  margin: 0 10px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-button:disabled {
-  background-color: #bbb;
-  cursor: not-allowed;
-}
-</style>

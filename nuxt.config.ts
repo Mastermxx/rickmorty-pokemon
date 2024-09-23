@@ -12,6 +12,14 @@ export default defineNuxtConfig({
     '@nuxt/content',
   ],
 
+  vite: {
+    resolve: {
+      alias: {
+        '@': '/src/',  // Define @ alias for the root directory
+      },
+    },
+  },
+
   experimental: {
     payloadExtraction: false,
     renderJsonPayloads: true,
