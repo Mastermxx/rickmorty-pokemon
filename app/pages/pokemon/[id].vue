@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { usePokemonStore } from '@/stores/usePokemonStore'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { usePokemonStore } from '../app/stores/usePokemonStore'
 
-const route = useRoute()
+const route = useRoute('pokemon-id')
 const pokemonStore = usePokemonStore()
 
 // Fetch Pokémon details when the component is mounted

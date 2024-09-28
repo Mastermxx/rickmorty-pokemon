@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import { useFetchData } from '@/composables/useFetchData'
 import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 
-import { useFetchData } from '../app/composables/useFetchData'
+import { useRouter } from 'vue-router'
 // Import store and composable
-import { useRickAndMortyStore } from '../app/stores/useRickAndMortyStore'
-import { useViewModeStore } from '../app/stores/useViewModeStore'
+import { useRickAndMortyStore } from '@/stores/useRickAndMortyStore'
+import { useViewModeStore } from '@/stores/useViewModeStore'
 
 // Import components
-import Card from '../app/components/Card.vue'
+import Card from '@/components/Card.vue'
 
 const rickAndMortyStore = useRickAndMortyStore()
 const viewModeStore = useViewModeStore()

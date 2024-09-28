@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useRickAndMortyStore } from '@/stores/useRickAndMortyStore'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useRickAndMortyStore } from '../app/stores/useRickAndMortyStore'
 
 const route = useRoute()
 const rickAndMortyStore = useRickAndMortyStore()

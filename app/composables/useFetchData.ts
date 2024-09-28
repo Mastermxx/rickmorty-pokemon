@@ -1,8 +1,8 @@
-export function useFetchData<T>(fetchFunction: (id?: string) => Promise<T>) {
+export function useFetchData<T>(fetchFunction: (id?: number) => Promise<T>) {
   const data = ref<T | null>(null)
   const status = ref('pending')
   const error = ref<any>(null)
-  const fetchData = async (id?: string) => {
+  const fetchData = async (id?: number) => {
     try {
       data.value = await fetchFunction(id)
       status.value = 'success'

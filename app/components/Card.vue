@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useViewModeStore } from '../stores/useViewModeStore' // Assuming this store handles view mode
+import { useViewModeStore } from '@/stores/useViewModeStore'
+import { computed } from 'vue' // Assuming this store handles view mode
 
 const props = defineProps({
   title: String,

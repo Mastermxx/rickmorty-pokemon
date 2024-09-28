@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { pwa } from './app/config/pwa'
 import { appDescription } from './app/constants/index'
 
@@ -15,7 +16,7 @@ export default defineNuxtConfig({
   vite: {
     resolve: {
       alias: {
-        '@': '/src/', // Define @ alias for the root directory
+        '@': resolve(__dirname, 'app'), // Define @ alias for the root directory
       },
     },
   },

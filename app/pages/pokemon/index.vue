@@ -2,13 +2,15 @@
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
-import { useFetchData } from '../app/composables/useFetchData'
+// import { useFetchData } from '@/composables/useFetchData'
+import { useFetchData } from '@/composables/useFetchData'
+
 // Import store and composable
-import { usePokemonStore } from '../app/stores/usePokemonStore'
-import { useViewModeStore } from '../app/stores/useViewModeStore'
+import { usePokemonStore } from '@/stores/usePokemonStore'
+import { useViewModeStore } from '@/stores/useViewModeStore'
 
 // Import components
-import Card from '../app/components/Card.vue'
+import Card from '@/components/Card.vue'
 
 const pokemonStore = usePokemonStore()
 const viewModeStore = useViewModeStore()
