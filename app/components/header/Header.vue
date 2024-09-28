@@ -10,12 +10,12 @@
         <ul class="flex gap-2">
           <li>
             <NuxtLink to="/pokemon" data-cy="pokemon-button">
-              <img width="100" src="/images/pokemon-logo.svg" alt="Pokémon Logo" class="pt-2" />
+              <img width="100" src="/images/pokemon-logo.svg" alt="Pokémon Logo" class="pt-2">
             </NuxtLink>
           </li>
           <li>
             <NuxtLink to="/rickandmorty" data-cy="rickmorty-button">
-              <img width="100" src="/images/rickandmorty-logo.png" alt="Rick & Morty Logo" />
+              <img width="100" src="/images/rickandmorty-logo.png" alt="Rick & Morty Logo">
             </NuxtLink>
           </li>
         </ul>

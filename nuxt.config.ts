@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   vite: {
     resolve: {
       alias: {
-        '@': '/src/',  // Define @ alias for the root directory
+        '@': '/src/', // Define @ alias for the root directory
       },
     },
   },

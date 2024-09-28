@@ -1,12 +1,12 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
 export const useViewModeStore = defineStore('viewMode', {
   state: () => ({
-    mode: 'grid'
+    mode: 'grid',
   }),
   actions: {
     toggleMode() {
-      this.mode = this.mode === 'grid' ? 'list' : 'grid';
-    }
-  }
-});
+      this.mode = this.mode === 'grid' ? 'list' : 'grid'
+    },
+  },
+})

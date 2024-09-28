@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
 export const useRickAndMortyStore = defineStore('rickAndMorty', {
   state: () => ({
@@ -8,13 +8,13 @@ export const useRickAndMortyStore = defineStore('rickAndMorty', {
   }),
   actions: {
     async fetchCharacterList(page = 1) {
-      const response = await $fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
-      this.characters = response.results;
-      this.currentPage = page;
+      const response = await $fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
+      this.characters = response.results
+      this.currentPage = page
     },
     async fetchCharacterDetail(id) {
-      const response = await $fetch(`https://rickandmortyapi.com/api/character/${id}`);
-      this.characterDetail = response;
+      const response = await $fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      this.characterDetail = response
     },
   },
-});
+})
