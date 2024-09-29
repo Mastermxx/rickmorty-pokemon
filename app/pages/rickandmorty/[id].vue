@@ -3,7 +3,7 @@ import { useRickAndMortyStore } from '@/stores/useRickAndMortyStore'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
-const route = useRoute()
+const route = useRoute('rickandmorty-id')
 const rickAndMortyStore = useRickAndMortyStore()
 
 // Fetch Rick & Morty character details when the component is mounted
@@ -38,15 +38,15 @@ onMounted(() => {
 
       <!-- Right Section - Rick & Morty Details -->
       <div class="lg:w-1/2 space-y-4 p-10 bg-green-700 rounded-3xl min-h-[600px]">
-        <div v-if="rickAndMortyStore.characterDetail">
+        <div v-if="rickAndMortyStore.RickandMortyDetail">
           <!-- Render character image and details when available -->
-          <img :src="rickAndMortyStore.characterDetail.image" :alt="rickAndMortyStore.characterDetail.name" class="w-60">
+          <img :src="rickAndMortyStore.RickandMortyDetail.image" :alt="rickAndMortyStore.RickandMortyDetail.name" class="w-60">
           <h1 class="text-4xl font-bold text-white">
-            {{ rickAndMortyStore.characterDetail.name }}
+            {{ rickAndMortyStore.RickandMortyDetail.name }}
           </h1>
-          <p><strong>Status:</strong> {{ rickAndMortyStore.characterDetail.status }}</p>
-          <p><strong>Species:</strong> {{ rickAndMortyStore.characterDetail.species }}</p>
-          <p><strong>Origin:</strong> {{ rickAndMortyStore.characterDetail.origin.name }}</p>
+          <p><strong>Status:</strong> {{ rickAndMortyStore.RickandMortyDetail.status }}</p>
+          <p><strong>Species:</strong> {{ rickAndMortyStore.RickandMortyDetail.species }}</p>
+          <p><strong>Origin:</strong> {{ rickAndMortyStore.RickandMortyDetail.origin.name }}</p>
         </div>
 
         <!-- Loading state -->
@@ -60,10 +60,25 @@ onMounted(() => {
 
 <style scoped>
 .rickandmorty-section {
+  position: relative; /* Ensure content stays on top */
+  z-index: 1;
+  border-radius: 30px;
+  /* Any other styles you want to apply to the section */
+}
+
+.rickandmorty-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('/images/rickandmorty.jpg');
   background-size: cover;
-  background-position-y: -10px;
-  background-position-x: 170px;
+  background-position: 150px -20px;
+  background-repeat: no-repeat;
   border-radius: 30px;
+  opacity: 0.5; /* Adjust this for transparency */
+  z-index: -1; /* Ensure the background image is behind the content */
 }
 </style>

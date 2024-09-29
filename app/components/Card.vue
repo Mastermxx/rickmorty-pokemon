@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useViewModeStore } from '@/stores/useViewModeStore'
-import { computed } from 'vue' // Assuming this store handles view mode
+import { computed } from 'vue'
 
 const props = defineProps({
   title: String,
@@ -19,24 +19,30 @@ const gradientBackgroundImage = `linear-gradient(rgba(0, 0, 0, 0) 51.91%, rgba(0
 
 <template>
   <div>
-    <div v-if="isListView" class="card">
-      <img :src="charImage" height="200" width="200">
-      <div class="card-content">
-        <h3>{{ title }}</h3>
-        <slot />
+    <!-- Conditional class binding based on isListView -->
+    <div :class="{ 'card-list': isListView, 'card-grid': !isListView }">
+      <!-- List View -->
+      <div v-if="isListView" class="card-list-item card" @click="onClick">
+        <img :src="charImage" height="50" width="50">
+        <div class="card-content">
+          <h3>{{ title }}</h3>
+          <slot />
+        </div>
       </div>
-    </div>
 
-    <div v-else class="card" :style="{ backgroundImage: gradientBackgroundImage }" @click="onClick">
-      <div class="card-content">
-        <h3>{{ title }}</h3>
-        <slot />
+      <!-- Grid View -->
+      <div v-else class="card" :style="{ backgroundImage: gradientBackgroundImage }" @click="onClick">
+        <div class="card-content">
+          <h3>{{ title }}</h3>
+          <slot />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+/* General card styles */
 .card {
   padding: 16px 20px;
   border-radius: 20px;
@@ -55,14 +61,22 @@ const gradientBackgroundImage = `linear-gradient(rgba(0, 0, 0, 0) 51.91%, rgba(0
   font-size: 14px;
 }
 
-.card-list .card {
+/* List view specific styling */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   padding: 10px;
   width: 900px;
   height: 70px;
   background-color: #222;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
   gap: 20px;
 }
 
@@ -70,5 +84,13 @@ img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+
+/* Grid view specific styling */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 </style>

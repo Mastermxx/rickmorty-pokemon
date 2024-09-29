@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-
-// import { useFetchData } from '@/composables/useFetchData'
 import { useFetchData } from '@/composables/useFetchData'
+import { onMounted } from 'vue'
+
+import { useRouter } from 'vue-router'
 
 // Import store and composable
 import { usePokemonStore } from '@/stores/usePokemonStore'
